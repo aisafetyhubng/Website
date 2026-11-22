@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import Quotes from '../components/Quotes.astro';
+import { site, programmes, apex } from '../data/site';
+---
+<Base title="Programmes" page="programmes" description="APEx Fellowship, reading groups, talks and Global AI Watch: free ways into AI safety for people in Nigeria.">
+  <div class="page-head" style="border-bottom:0;padding-bottom:20px">
+    <div class="wrap"><h1>Programmes</h1></div>
+  </div>
+
+  <div class="wrap" style="padding-bottom:44px">
+    <div class="rows">
+      {programmes.map((p) => (
+        <a class="row" href={p.href}>
+          <span class="name"><i class={`sq ${p.marker}`}></i>{p.nameItalic ? `${p.name} ${p.nameItalic}` : p.name}</span>
+          <span class="desc">{p.rowText}</span>
+          <span class="stat">{p.status ? <><b>{p.status}</b> · {p.statusDetail}</> : p.statusDetail}</span>
+          <span class="arr">→</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <section class="feature-band">
+    <div class="wrap">
+      <div class="card">
+        <canvas class="mosaic" data-seed="19" aria-hidden="true"></canvas>
+        <span class="pill">{apex.pill}</span>
+        <h2>APEx <em>Fellowship</em></h2>
+        <p>{apex.fullName}</p>
+      </div>
+      <div class="facts-row">
+        {apex.facts.map((f) => <div><span class="label">{f.label}</span>{f.value}</div>)}
+        <a class="btn" href={site.links.apexProgram}>Join the waitlist ↗</a>
+      </div>
+      <a class="more" href={site.links.apexCurriculum}>Read the open curriculum →</a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="head">
+        <h2>Who APEx is for</h2>
+        <p class="lead" style="margin:0;max-width:44ch">{apex.audienceIntro}</p>
+      </div>
+      <div class="rows">
+        {apex.audience.map((a) => (
+          <div class="row two"><span class="name">{a.name}</span><span class="desc">{a.text}</span></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="head"><h2>From our seminars</h2></div>
+      <Quotes />
+    </div>
+  </section>
+</Base>

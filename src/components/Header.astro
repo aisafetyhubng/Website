@@ -1,0 +1,53 @@
+---
+import Logo from './Logo.astro';
+import { programmes, site } from '../data/site';
+
+interface Props { page?: string }
+const { page } = Astro.props;
+const current = (name: string) => (page === name ? 'page' : undefined);
+---
+<header class="site">
+  <div class="wrap bar">
+    <Logo />
+    <nav class="main" aria-label="Main">
+      <div class="dd">
+        <button type="button" aria-haspopup="true" aria-current={current('programmes')}>Programmes</button>
+        <div class="dd-panel">
+          {programmes.map((p) => (
+            <a href={p.href}><i class={`sq ${p.marker}`}></i><b>{p.nameItalic ? `${p.name} ${p.nameItalic}` : p.name}</b><small>{p.menuStatus}</small></a>
+          ))}
+          <a class="all" href="/programmes">All programmes →</a>
+        </div>
+      </div>
+      <a href="/events" aria-current={current('events')}>Events</a>
+      <a href="/about" aria-current={current('about')}>About us</a>
+      <a href="/contact" aria-current={current('contact')}>Contact</a>
+    </nav>
+    <button class="look" id="look" type="button" aria-label="Switch colour style"><i aria-hidden="true"></i><span id="look-txt">Cream</span></button>
+    <a class="btn btn-dark hdr-donate" href="/about#support">Donate</a>
+    <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="drawer">
+      <svg viewBox="0 0 14 12" aria-hidden="true"><path d="M0 1h14M0 6h14M0 11h14" stroke="currentColor" stroke-width="1.6" /></svg>Menu
+    </button>
+  </div>
+  <div class="drawer" id="drawer">
+    <div class="wrap">
+      <div>
+        <span class="label">Programmes</span>
+        <ul>
+          <li><a href="/programmes">All programmes</a></li>
+          <li><a href={site.links.apexProgram}>APEx Fellowship</a></li>
+          <li><a href={site.links.readingGroup}>Reading group</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="label">Organisation</span>
+        <ul>
+          <li><a href="/events">Events</a></li>
+          <li><a href="/about">About us</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/about#support">Donate</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

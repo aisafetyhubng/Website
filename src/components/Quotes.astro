@@ -1,0 +1,14 @@
+---
+import { quotes } from '../data/site';
+---
+<div class="quotes">
+  {quotes.map((q) => (
+    <figure class="quote" style="margin:0">
+      <img class="qimg" src={q.image} alt={q.name} width="84" height="112" loading="lazy" />
+      <div>
+        <blockquote>{q.text}</blockquote>
+        <footer><b>{q.name}</b>{q.role}</footer>
+      </div>
+    </figure>
+  ))}
+</div>

@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, contactChannels } from '../data/site';
+---
+<Base title="Contact" page="contact" description="Get in touch with AI Safety Hub Nigeria about partnerships, speaking, volunteering, donations or our programmes." showNewsletter={false}>
+  <div class="page-head" style="border-bottom:0;padding-bottom:20px">
+    <div class="wrap"><h1>Contact us</h1></div>
+  </div>
+  <div class="wrap contact" style="padding-bottom:72px">
+    <div class="box">
+      <span class="label">Email</span>
+      <div class="email-row"><span>{site.email}</span><button class="copy" type="button" data-copy={site.email}>Copy</button></div>
+      <p style="color:var(--soft);font-size:14px;margin-top:12px">For partnerships, speaking, volunteering, donations or questions about our programmes.</p>
+      <a class="btn btn-dark" href={`mailto:${site.email}`} style="margin-top:16px">Write us an email</a>
+    </div>
+    <div class="box find">
+      <span class="label">Find us</span>
+      {contactChannels.map((c) => (
+        <a href={c.href}><b>{c.name}</b><small>{c.text}</small><span class="arr">↗</span></a>
+      ))}
+    </div>
+  </div>
+</Base>

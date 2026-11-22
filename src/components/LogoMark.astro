@@ -1,0 +1,9 @@
+---
+/** Stand-in for the logo mark until the original SVG is supplied. Colour comes from `currentColor`. */
+interface Props { class?: string; width?: number }
+const { class: cls, width } = Astro.props;
+---
+<svg class={cls} width={width} viewBox="0 0 72 60" aria-hidden="true">
+  <g stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M9 30 L17 17 M9 30 L17 43 M17 17 L30 9 M30 9 L44 10 M44 10 L39 22 M39 22 L30 31 M30 31 L17 43 M30 31 L44 39 M44 39 L56 33 M56 33 L60 19 M44 10 L60 19 M44 39 L52 50 M30 31 L33 47"/></g>
+  <g fill="currentColor"><rect x="3" y="24" width="12" height="12" rx="2.6"/><rect x="11" y="11" width="12" height="12" rx="2.6"/><rect x="11" y="37" width="12" height="12" rx="2.6"/><rect x="24" y="3" width="12" height="12" rx="2.6"/><rect x="38" y="4" width="12" height="12" rx="2.6"/><rect x="35" y="18" width="8" height="8" rx="2"/><rect x="25" y="26" width="10" height="10" rx="2.4"/><rect x="29" y="43" width="8" height="8" rx="2"/><rect x="38" y="33" width="12" height="12" rx="2.6"/><rect x="51" y="28" width="10" height="10" rx="2.4"/><rect x="55" y="14" width="10" height="10" rx="2.4"/><rect x="47" y="45" width="10" height="10" rx="2.4"/></g>
+</svg>

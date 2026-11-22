@@ -1,0 +1,81 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { site, announcement } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  page?: string;
+  showAnnouncement?: boolean;
+  showNewsletter?: boolean;
+}
+const { title, description = site.description, page, showAnnouncement = false, showNewsletter = true } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : site.name;
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).toString();
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'NGO',
+  name: site.name,
+  url: Astro.site?.toString(),
+  email: site.email,
+  description: site.description,
+  areaServed: 'Nigeria',
+  address: { '@type': 'PostalAddress', addressCountry: 'NG', addressLocality: 'Abuja' },
+  sameAs: [site.links.linkedin, site.links.instagram, site.links.substack, site.links.github, site.links.luma],
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#063A41" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/og-image.png', Astro.site).toString()} />
+    <meta property="og:locale" content="en_NG" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@400&display=swap" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+  </head>
+  <body>
+    <script is:inline>
+      try { if (localStorage.getItem('ashn-look') === 'warm') document.body.setAttribute('data-look', 'warm'); } catch (e) {}
+    </script>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header page={page} />
+    {showAnnouncement && announcement.enabled && (
+      <div class="notice">
+        <div class="wrap">
+          <b>{announcement.title}</b>
+          <span>{announcement.text}</span>
+          <a href={announcement.href}>{announcement.linkLabel}</a>
+        </div>
+      </div>
+    )}
+    <main id="main">
+      <slot />
+      {showNewsletter && <Newsletter />}
+    </main>
+    <Footer />
+    <script>
+      import '../scripts/site.ts';
+    </script>
+  </body>
+</html>

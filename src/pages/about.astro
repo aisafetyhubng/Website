@@ -1,0 +1,129 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, programmes, about, team, timeline, partners } from '../data/site';
+const last = timeline[timeline.length - 1];
+---
+<Base title="About us" page="about" description="Who we are, how we started, our team and what AI Safety Hub Nigeria has done so far.">
+  <div class="page-head">
+    <div class="wrap">
+      <h1>About us</h1>
+      <p class="lead">{about.intro}</p>
+      <div class="acts left">
+        <a class="btn btn-dark" href="#why">Why AI safety in Nigeria →</a>
+        <a class="btn btn-outline" href="/contact">Volunteer with us →</a>
+      </div>
+      <nav class="anchors" aria-label="On this page">
+        <a href="#what">What we do</a><a href="#approach">Approach</a><a href="#story">Our story</a><a href="#team">Team</a><a href="#timeline">Timeline</a><a href="#network">Network</a><a href="#support">Support us</a>
+      </nav>
+    </div>
+  </div>
+
+  <section class="sec" id="what">
+    <div class="wrap">
+      <div class="head"><h2>What we do</h2></div>
+      <div class="rows">
+        {programmes.map((p) => (
+          <a class="row" href={p.href}>
+            <span class="name"><i class={`sq ${p.marker}`}></i>{p.nameItalic ? `${p.name} ${p.nameItalic}` : p.name}</span>
+            <span class="desc">{p.aboutText}</span>
+            <span class="stat">{p.aboutStatus}</span>
+            <span class="arr">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="why">
+    <div class="wrap split">
+      <div><h2>Why AI safety in Nigeria</h2></div>
+      <div style="display:grid;gap:14px;color:var(--soft)">
+        {about.why.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="approach">
+    <div class="wrap">
+      <div class="head"><h2>Our approach</h2></div>
+      <div class="pillars">
+        {about.pillars.map((p) => <div><span class="label">{p.label}</span><h3>{p.title}</h3><p>{p.text}</p></div>)}
+      </div>
+      <p class="vision"><span class="label">Our vision</span>{about.vision}</p>
+    </div>
+  </section>
+
+  <section class="sec" id="story">
+    <div class="wrap split">
+      <div><h2>How we started</h2></div>
+      <div style="display:grid;gap:14px;color:var(--soft)">
+        {about.story.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="team">
+    <div class="wrap team">
+      <div>
+        <h2>Our team</h2>
+        <p class="lead" style="font-size:14px">Our six co-founders.</p>
+        <a class="btn btn-dark" href="/contact" style="margin-top:14px">Join us</a>
+      </div>
+      <div class="people">
+        {team.map((t) => (
+          <div class="person">
+            <img class="ph" src={t.photo} alt={t.name} width="64" height="64" loading="lazy" />
+            <div>
+              <b>{t.name}</b>
+              <span>{t.role}</span>
+              <p>{t.bio}</p>
+              <div class="ln"><a href={t.linkedin}>LinkedIn</a></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="timeline">
+    <div class="wrap">
+      <div class="head"><h2>Our story so far</h2></div>
+      <div class="tl" data-timeline>
+        <div class="tl-card" aria-live="polite">
+          <span class="when">{last.when}</span><h3>{last.title}</h3><p>{last.text}</p>
+        </div>
+        <ol class="tl-line">
+          {timeline.map((t) => (
+            <li>
+              <button type="button" data-when={t.when} data-title={t.title} data-text={t.text} aria-pressed={t === last ? 'true' : 'false'}>
+                <b>{t.short}</b><small>{t.label}</small>
+              </button>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="network">
+    <div class="wrap">
+      <div class="head"><h2>Our network</h2></div>
+      <div class="network">
+        {partners.map((p) => <div><b>{p.name}</b><small>{p.role}</small></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="support">
+    <div class="wrap split">
+      <div><h2>Support our work</h2></div>
+      <div>
+        <p style="color:var(--soft)">{about.support}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:18px">
+          <a class="btn btn-dark" href={`mailto:${site.email}?subject=Supporting%20AI%20Safety%20Hub%20Nigeria`}>Talk to us about giving</a>
+          <a class="link" href="/contact">Partner with us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

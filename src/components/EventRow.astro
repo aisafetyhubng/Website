@@ -1,0 +1,10 @@
+---
+import type { EventItem } from '../data/site';
+interface Props { event: EventItem; next?: boolean; linkLabel?: string }
+const { event, next = false, linkLabel = 'Details and registration ↗' } = Astro.props;
+---
+<div class="ev">
+  <div class:list={['d', { next }]}><b>{event.day}</b><small>{event.month}</small></div>
+  <div><h3>{event.title}</h3><p>{event.details}</p></div>
+  {event.href && <a class="reg" href={event.href}>{linkLabel}</a>}
+</div>
