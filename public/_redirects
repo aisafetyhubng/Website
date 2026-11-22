@@ -1,0 +1,10 @@
+# Old addresses from the previous website -> new pages (permanent redirects).
+/sitemap.xml        /sitemap-index.xml  301
+/sitemap.rss        https://aisafetyhubnigeria.substack.com/feed  301
+/what-we-do         /programmes  301
+/apex               /programmes  301
+/apex-program       /programmes  301
+/resources          https://aisafetyhubnigeria.substack.com/  301
+/team               /about#team  301
+/donate             /about#support  301
+/home               /  301
