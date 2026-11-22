@@ -1,7 +1,8 @@
 // Cloudflare Workers config: serves the built Astro site (dist/) as static files.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "aisafetyhubng",
+  // Must match the Worker's name in the Cloudflare dashboard.
+  "name": "website",
   "compatibility_date": "2026-11-01",
   // Builds the site before every deploy.
   "build": {

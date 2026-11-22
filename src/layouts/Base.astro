@@ -14,7 +14,9 @@ interface Props {
 }
 const { title, description = site.description, page, showAnnouncement = false, showNewsletter = true } = Astro.props;
 const fullTitle = title ? `${title} · ${site.name}` : site.name;
-const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).toString();
+// Pages are built as about.html etc.; the public address drops ".html", and the homepage is just "/".
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
+const canonical = new URL(path, Astro.site).toString();
 
 const orgSchema = {
   '@context': 'https://schema.org',
