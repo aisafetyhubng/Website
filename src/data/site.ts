@@ -7,7 +7,10 @@
 export const site = {
   name: 'AI Safety Hub Nigeria',
   description:
-    'AI Safety Hub Nigeria helps Nigerian students and early-career professionals find their way into AI safety research, governance and policy.',
+    'AI Safety Hub Nigeria is a non-profit helping Nigerian students and early-career professionals find their way into AI safety research, governance and policy, through the free APEx Fellowship, reading groups and events.',
+  alternateNames: ['ASH Nigeria', 'AISHN', 'AI Safety Hub NG'],
+  disambiguation:
+    'AI Safety Hub Nigeria (aisafetyhubng.com) runs the APEx Fellowship. It is a separate organisation from AI Safety Nigeria (aisafetynigeria.com).',
   mission: 'Advancing AI safety research, education and governance in Nigeria and across Africa.',
   location: 'Abuja and Lagos, Nigeria',
   email: 'aisafetyhubng@gmail.com',

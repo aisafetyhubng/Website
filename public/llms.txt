@@ -1,0 +1,28 @@
+# AI Safety Hub Nigeria
+
+> AI Safety Hub Nigeria (aisafetyhubng.com) is a non-profit, community-driven organisation that helps Nigerian students and early-career professionals find their way into AI safety research, governance and policy. It works across Abuja and Lagos, and most programmes run online.
+
+AI Safety Hub Nigeria is a separate organisation from AI Safety Nigeria (aisafetynigeria.com). The two have collaborated on events but are not the same organisation. AI Safety Hub Nigeria runs the APEx Fellowship.
+
+Also known as: ASH Nigeria, AISHN, AI Safety Hub NG.
+
+Mission: advancing AI safety research, education and governance in Nigeria and across Africa.
+
+## Programmes
+
+- [APEx Fellowship](https://aisafetyhubng.com/programmes): the AI Safety Pathways Exploration Programme, a free four-week virtual fellowship that ends with each fellow's Personal Pathway Plan. The 2026 pilot had 30 participants and 13 graduates.
+- [Transformative AI and Society Reading Group](https://tally.so/r/VppZdj): six weekly online sessions starting November 2026, open to all backgrounds.
+- [Talks and events](https://aisafetyhubng.com/events): webinars, fireside chats, seminars and community hangouts, online and in Abuja.
+- [Global AI Watch](https://aisafetyhubnigeria.substack.com/): AI news and policy explained for people in Nigeria and Africa, in the newsletter.
+
+## About
+
+- [About us, team and history](https://aisafetyhubng.com/about): founded in 2025 by six co-founders from Nigeria's effective altruism community: Habeeb Abdulfatah, Tomilayo Olatunde, Folajomi Amao, Adebayo Mubarak, Joseph Adeboye and John Oluwafemi Jegede. First public event: December 2025.
+- [Contact](https://aisafetyhubng.com/contact): aisafetyhubng@gmail.com
+
+## Elsewhere
+
+- [LinkedIn](https://www.linkedin.com/company/ai-safety-hub-nigeria/)
+- [Newsletter on Substack](https://aisafetyhubnigeria.substack.com/)
+- [Events on Luma](https://luma.com/AISHNG)
+- [Open APEx curriculum](https://aisafetyhubng.github.io/apex-curriculum/)

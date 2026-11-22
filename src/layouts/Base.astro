@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Newsletter from '../components/Newsletter.astro';
-import { site, announcement } from '../data/site';
+import { site, announcement, team } from '../data/site';
 
 interface Props {
   title?: string;
@@ -13,21 +13,51 @@ interface Props {
   showNewsletter?: boolean;
 }
 const { title, description = site.description, page, showAnnouncement = false, showNewsletter = true } = Astro.props;
-const fullTitle = title ? `${title} · ${site.name}` : site.name;
+// The homepage title leads with the full name so Google matches "AI Safety Hub Nigeria" to this site.
+const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · AI safety fellowships and community in Nigeria`;
 // Pages are built as about.html etc.; the public address drops ".html", and the homepage is just "/".
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
 const canonical = new URL(path, Astro.site).toString();
+const siteUrl = Astro.site?.toString() ?? '/';
 
+// Organisation details for search engines and AI assistants.
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'NGO',
+  '@id': `${siteUrl}#organization`,
   name: site.name,
-  url: Astro.site?.toString(),
+  alternateName: site.alternateNames,
+  disambiguatingDescription: site.disambiguation,
+  url: siteUrl,
+  logo: new URL('/favicon.svg', Astro.site).toString(),
+  image: new URL('/og-image.png', Astro.site).toString(),
   email: site.email,
   description: site.description,
-  areaServed: 'Nigeria',
-  address: { '@type': 'PostalAddress', addressCountry: 'NG', addressLocality: 'Abuja' },
-  sameAs: [site.links.linkedin, site.links.instagram, site.links.substack, site.links.github, site.links.luma],
+  foundingDate: '2025',
+  areaServed: [{ '@type': 'Country', name: 'Nigeria' }, { '@type': 'Continent', name: 'Africa' }],
+  location: [
+    { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: 'Abuja', addressCountry: 'NG' } },
+    { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: 'Lagos', addressCountry: 'NG' } },
+  ],
+  knowsAbout: ['AI safety', 'AI governance', 'AI alignment', 'AI policy', 'Fellowships', 'Field-building'],
+  founder: team.map((t) => ({ '@type': 'Person', name: t.name, sameAs: t.linkedin })),
+  sameAs: [
+    site.links.linkedin,
+    site.links.instagram,
+    site.links.substack,
+    site.links.github,
+    site.links.luma,
+    site.links.apexProgram,
+    site.links.apexCurriculum,
+  ],
+};
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  alternateName: site.alternateNames,
+  url: siteUrl,
+  publisher: { '@id': `${siteUrl}#organization` },
 };
 ---
 <!doctype html>
@@ -55,6 +85,7 @@ const orgSchema = {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@400&display=swap" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   </head>
   <body>
     <script is:inline>
