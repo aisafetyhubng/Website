@@ -3,8 +3,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 // The live address of the site. Set SITE_URL when the domain is connected,
-// e.g. SITE_URL=https://aisafetyhub.ng — it is used for the sitemap, canonical links and share previews.
-const site = process.env.SITE_URL || 'https://aisafetyhubnigeria.org';
+// It is used for the sitemap, canonical links and share previews. Override with SITE_URL for test deployments.
+const site = process.env.SITE_URL || 'https://aisafetyhubng.com';
 
 export default defineConfig({
   site,
