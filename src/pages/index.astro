@@ -20,12 +20,20 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
     </div>
   </section>
 
-  <div class="strip">
+  <section class="partners-strip" aria-label="Our speakers and partners">
     <div class="wrap">
-      <small>Our speakers and partners come from</small>
-      {partners.map((p) => <span>{p.short ?? p.name}</span>)}
+      <p class="partners-label">Our speakers and partners come from</p>
+      <ul class="logos">
+        {partners.map((p) => (
+          <li>
+            <a href={p.website} title={p.name} rel="noopener">
+              <img src={p.logo} alt={p.name} style={`height:${p.height}px`} loading="lazy" />
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
-  </div>
+  </section>
 
   <section class="sec">
     <div class="wrap">

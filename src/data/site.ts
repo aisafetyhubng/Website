@@ -143,12 +143,16 @@ export const stat = {
   href: site.links.apexProgram,
 };
 
+/**
+ * Partner logos live in public/img/partners. `height` evens out the visual size of
+ * very wide or very tall logos so they look balanced side by side.
+ */
 export const partners = [
-  { name: 'BlueDot Impact', role: 'Seminar speaker' },
-  { name: 'The AI Collectives Abuja', short: 'The AI Collectives', role: 'Event co-host' },
-  { name: 'TrustedTech Africa', role: 'Event co-host' },
-  { name: 'AI Safety Nigeria', role: 'Event co-host' },
-  { name: 'ILINA Program', role: 'Speakers and alumni' },
+  { name: 'BlueDot Impact', role: 'Seminar speaker', logo: '/img/partners/bluedot.svg', height: 21, website: 'https://bluedot.org' },
+  { name: 'The AI Collective Abuja', role: 'Event co-host', logo: '/img/partners/ai-collective.svg', height: 52, website: 'https://www.aicollective.com' },
+  { name: 'TrustedTech Africa', role: 'Event co-host', logo: '/img/partners/trustedtech-africa.png', height: 40, website: 'https://www.trustedtechafrica.com' },
+  { name: 'AI Safety Nigeria', role: 'Event co-host', logo: '/img/partners/ai-safety-nigeria.png', height: 44, website: 'https://aisafetynigeria.com' },
+  { name: 'ILINA Program', role: 'Speakers and alumni', logo: '/img/partners/ilina.png', height: 50, website: 'https://www.ilinaprogram.org' },
 ];
 
 export const quotes = [

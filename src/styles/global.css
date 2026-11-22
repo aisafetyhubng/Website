@@ -347,3 +347,29 @@ footer.site .about{margin-top:14px;color:#A9CACC;max-width:30ch;font-size:13px}
 .qimg{width:84px;height:112px;object-fit:cover;display:block;background:var(--aqua)}
 .thumb-img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--aqua)}
 .photo{width:100%;height:auto;aspect-ratio:540/415;object-fit:cover;display:block;background:var(--aqua)}
+
+/* partner logo strip (home) */
+.partners-strip{border-bottom:1px solid var(--rule);background:var(--paper)}
+.partners-strip .wrap{display:flex;align-items:center;gap:20px 48px;padding-block:28px}
+.partners-label{flex:none;margin:0;font-size:13px;line-height:1.4;color:var(--faint);max-width:150px}
+.logos{flex:1;list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 36px}
+.logos li{display:flex;align-items:center}
+.logos a{display:flex;align-items:center;padding:4px 0;border-radius:3px}
+.logos img,.partner-logo img{display:block;width:auto;max-width:180px;filter:grayscale(1) contrast(1.1);opacity:.78;mix-blend-mode:multiply;transition:filter .2s ease,opacity .2s ease}
+.logos a:hover img,.logos a:focus-visible img,.partner:hover .partner-logo img,.partner:focus-visible .partner-logo img{filter:none;opacity:1}
+@media (max-width:900px){
+  .partners-strip .wrap{flex-direction:column;align-items:stretch;gap:18px}
+  .partners-label{max-width:none;text-align:center}
+  .logos{justify-content:center;gap:22px 34px}
+}
+@media (max-width:480px){.logos img{max-width:140px}}
+
+/* partner cards (about) */
+.network{grid-template-columns:repeat(5,1fr)}
+.partner{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--rule);padding-top:14px;text-decoration:none}
+.partner-logo{height:56px;display:flex;align-items:center;margin-bottom:6px}
+.partner b{display:block;font-family:var(--serif);font-weight:500;font-size:16px;line-height:1.2}
+.partner small{font-size:11.5px;color:var(--faint)}
+.partner:hover b{color:var(--teal)}
+@media (max-width:900px){.network{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.network{grid-template-columns:1fr 1fr}}

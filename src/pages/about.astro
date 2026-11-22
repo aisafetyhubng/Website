@@ -109,7 +109,13 @@ const last = timeline[timeline.length - 1];
     <div class="wrap">
       <div class="head"><h2>Our network</h2></div>
       <div class="network">
-        {partners.map((p) => <div><b>{p.name}</b><small>{p.role}</small></div>)}
+        {partners.map((p) => (
+          <a class="partner" href={p.website} rel="noopener">
+            <span class="partner-logo"><img src={p.logo} alt="" style={`height:${p.height}px`} loading="lazy" /></span>
+            <b>{p.name}</b>
+            <small>{p.role}</small>
+          </a>
+        ))}
       </div>
     </div>
   </section>
