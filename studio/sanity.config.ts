@@ -3,6 +3,7 @@ import {structureTool, type StructureBuilder} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {projectId, dataset} from './env'
+import {brand} from '../brand.config.mjs'
 
 const singletons = new Set(['siteSettings', 'aboutPage'])
 
@@ -23,7 +24,7 @@ const structure = (S: StructureBuilder) =>
 
 export default defineConfig({
   name: 'default',
-  title: 'AI Safety Hub Nigeria',
+  title: brand.name,
   projectId,
   dataset,
   plugins: [structureTool({structure}), visionTool()],

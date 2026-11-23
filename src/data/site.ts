@@ -1,16 +1,17 @@
 /**
- * All of the site's editable content lives here.
- * When Sanity is connected, src/lib/content.ts will load this same shape from Sanity instead,
- * so pages and components don't need to change.
+ * Built-in copy of the site's content. The live site loads the same content from Sanity
+ * (see src/lib/content.ts) and falls back to this file if Sanity can't be reached.
+ * The organisation's name and domain come from brand.config.mjs.
  */
+import { brand } from '../../brand.config.mjs';
 
 export const site = {
-  name: 'AI Safety Hub Nigeria',
-  description:
-    'AI Safety Hub Nigeria is a non-profit helping Nigerian students and early-career professionals find their way into AI safety research, governance and policy, through the free APEx Fellowship, reading groups and events.',
-  alternateNames: ['ASH Nigeria', 'AISHN', 'AI Safety Hub NG'],
-  disambiguation:
-    'AI Safety Hub Nigeria (aisafetyhubng.com) runs the APEx Fellowship. It is a separate organisation from AI Safety Nigeria (aisafetynigeria.com).',
+  name: brand.name,
+  logoLines: brand.logoLines,
+  domain: brand.domain,
+  description: `${brand.name} is a non-profit helping Nigerian students and early-career professionals find their way into AI safety research, governance and policy, through the free APEx Fellowship, reading groups and events.`,
+  alternateNames: brand.alternateNames,
+  disambiguation: `${brand.name} (${brand.domain}) runs the APEx Fellowship. ${brand.disambiguation}`,
   mission: 'Advancing AI safety research, education and governance in Nigeria and across Africa.',
   location: 'Abuja and Lagos, Nigeria',
   email: 'aisafetyhubng@gmail.com',
@@ -25,6 +26,8 @@ export const site = {
     apexCurriculum: 'https://aisafetyhubng.github.io/apex-curriculum/',
     apexSurvey: 'https://aisafetyhubng.github.io/apex-survey',
     readingGroup: 'https://tally.so/r/VppZdj',
+    /** YouTube channel, set in the Studio (Homepage and site settings → Contact and links). */
+    youtube: '',
   },
   lumaCalendarId: 'cal-781TRaV2ceJrMvj',
   substackFeed: 'https://aisafetyhubnigeria.substack.com/feed',
@@ -213,6 +216,13 @@ export const pastEventCards = [
   },
 ];
 
+/**
+ * Recorded talks shown on the Events page. Filled from events in Sanity that have a
+ * "Recording on YouTube" link; the section is hidden while this is empty.
+ */
+export type Recording = { id: string; title: string; date: string; url: string };
+export const recordings: Recording[] = [];
+
 export const featuredPastEvent = {
   kicker: 'Aug–Sep 2026 · Online',
   title: 'APEx 2026 pilot cohort',
@@ -252,7 +262,7 @@ export const earlierEvents: EventItem[] = [
 
 export const about = {
   intro:
-    'AI Safety Hub Nigeria helps people in Nigeria work on making advanced AI safe and beneficial. We do this by running fellowships, reading groups, events, and more.',
+    `${brand.name} helps people in Nigeria work on making advanced AI safe and beneficial. We do this by running fellowships, reading groups, events, and more.`,
   why: [
     "The rules and safety practices being set for advanced AI today will shape the next century, yet Africa, home to the world's youngest population, is largely absent from the rooms where they are decided.",
     'Nigeria has one of the largest youth populations in the world, with most of its more than 200 million people under 35. That talent could help make AI go well, but almost none of it is reaching AI safety research or governance yet.',
@@ -267,7 +277,7 @@ export const about = {
   vision:
     'Nigeria becomes a recognised hub for AI safety expertise in Africa, with Nigerian researchers and practitioners contributing to global AI safety research, policy and practice.',
   story: [
-    "AI Safety Hub Nigeria was started by six people from Nigeria's effective altruism community who kept running into the same problem. Nigerians were interested in AI safety, but there was almost no way in: few local programmes, few mentors, and little sense of where someone from Nigeria could contribute.",
+    `${brand.name} was started by six people from Nigeria's effective altruism community who kept running into the same problem. Nigerians were interested in AI safety, but there was almost no way in: few local programmes, few mentors, and little sense of where someone from Nigeria could contribute.`,
     "We came from different corners of that community, from university EA groups and EA Nigeria to the ILINA Program in Kenya and technology governance work at home. We decided to build the on-ramp we wished we'd had. Our first public webinar ran in December 2025. Since then we've run a fellowship, seminars, a community hangout in Abuja and a reading group.",
     'Our mission is to advance AI safety research, education and governance in Nigeria and across Africa. We work across Abuja and Lagos, and most of our programmes run online so anyone in Nigeria can join.',
   ],

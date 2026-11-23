@@ -4,7 +4,7 @@ import Quotes from '../components/Quotes.astro';
 import { getContent } from '../lib/content';
 import { getLatestPosts } from '../lib/substack';
 
-const { site, programmes, stat, partners, upcomingEvents, recentEvents } = await getContent();
+const { site, programmes, stat, partners, upcomingEvents, recentEvents, recordings } = await getContent();
 const posts = await getLatestPosts(site.substackFeed, 3);
 const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
@@ -13,7 +13,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
     <canvas class="mosaic" aria-hidden="true"></canvas>
     <div class="wrap">
       <h1>Helping Nigerians find their way into <em>AI safety</em></h1>
-      <p>AI Safety Hub Nigeria runs free fellowships, reading groups and events for students and early-career professionals who want to work on making AI go well.</p>
+      <p>{site.name} runs free fellowships, reading groups and events for students and early-career professionals who want to work on making AI go well.</p>
       <div class="ctas">
         <a class="btn btn-light" href="/programmes">Explore our programmes</a>
         <a class="btn btn-line" href="/about#why">Why AI safety matters</a>
@@ -79,6 +79,7 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
         <div class="acts">
           <a class="btn btn-dark" href="/events">See all events</a>
           <a class="link" href={site.links.luma}>Subscribe on Luma ↗</a>
+          {recordings.length > 0 && <a class="link" href="/events#recordings">Watch past talks →</a>}
         </div>
       </div>
       <div class="ev-cards">
@@ -105,12 +106,13 @@ const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
           <h2>From the newsletter</h2>
           <a class="link" href={site.links.substack}>All issues ↗</a>
         </div>
-        <div class="posts">
+        <div class:list={['posts', { few: posts.length < 3 }]}>
           {posts.map((p) => (
             <a class="post" href={p.link}>
               <span class="label">{fmt(p.date)}</span>
               <h3>{p.title}</h3>
-              <p>{p.excerpt}</p>
+              {p.excerpt && <p>{p.excerpt}</p>}
+              <span class="go">Read the issue →</span>
             </a>
           ))}
         </div>

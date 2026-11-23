@@ -1,9 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
+import { brand } from '../../brand.config.mjs';
 import { getContent } from '../lib/content';
 const { site, contactChannels } = await getContent();
 ---
-<Base title="Contact" page="contact" description="Get in touch with AI Safety Hub Nigeria about partnerships, speaking, volunteering, donations or our programmes." showNewsletter={false}>
+<Base title="Contact" page="contact" description={`Get in touch with ${brand.name} about partnerships, speaking, volunteering, donations or our programmes.`} showNewsletter={false}>
   <div class="page-head" style="border-bottom:0;padding-bottom:20px">
     <div class="wrap"><h1>Contact us</h1></div>
   </div>

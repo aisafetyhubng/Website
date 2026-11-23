@@ -1,22 +1,35 @@
 ---
 import Base from '../layouts/Base.astro';
+import { brand } from '../../brand.config.mjs';
 import EventRow from '../components/EventRow.astro';
+import Video from '../components/Video.astro';
 import { getContent } from '../lib/content';
-const { site, upcomingEvents, pastEventCards, featuredPastEvent, earlierEvents } = await getContent();
+const { site, upcomingEvents, pastEventCards, featuredPastEvent, earlierEvents, recordings } = await getContent();
 const lumaEmbed = `https://luma.com/embed/calendar/${site.lumaCalendarId}/events`;
 ---
-<Base title="Events" page="events" description="Talks, seminars, reading groups and community events from AI Safety Hub Nigeria, online and in Abuja.">
+<Base title="Events" page="events" description={`Talks, seminars, recordings and community events from ${brand.name}, online and in Abuja.`}>
   <div class="page-head" style="border-bottom:0;padding-bottom:8px">
-    <div class="wrap top">
-      <h1>Events</h1>
-      <div class="acts">
-        <a class="btn btn-dark" href={site.links.luma}>Subscribe on Luma</a>
-        <a class="link" href={site.links.linkedinPosts}>Event recaps on LinkedIn ↗</a>
+    <div class="wrap">
+      <div class="top">
+        <div>
+          <h1>Events</h1>
+          <p class="lead">Talks, seminars and community events on AI safety, online and in Abuja. Everything is free and open to all.</p>
+        </div>
+        <div class="acts">
+          <a class="btn btn-dark" href={site.links.luma}>Subscribe on Luma</a>
+          <a class="link" href={site.links.linkedinPosts}>Event recaps on LinkedIn ↗</a>
+        </div>
       </div>
+      <nav class="anchors" aria-label="On this page">
+        <a href="#next">Next up</a>
+        <a href="#calendar">Calendar</a>
+        {recordings.length > 0 && <a href="#recordings">Recordings</a>}
+        <a href="#past">Previous events</a>
+      </nav>
     </div>
   </div>
 
-  <section class="sec" style="padding-top:20px">
+  <section class="sec" id="next" style="padding-top:20px">
     <div class="wrap">
       <div class="head" style="margin-bottom:12px"><h2>Next up</h2></div>
       <div class="events">
@@ -27,17 +40,34 @@ const lumaEmbed = `https://luma.com/embed/calendar/${site.lumaCalendarId}/events
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="calendar">
     <div class="wrap">
       <div class="head" style="margin-bottom:12px">
         <h2>Calendar</h2>
         <a class="link" href={site.links.luma}>Open in Luma ↗</a>
       </div>
-      <iframe class="luma" src={lumaEmbed} title="AI Safety Hub Nigeria events calendar on Luma" loading="lazy" allowfullscreen></iframe>
+      <iframe class="luma" src={lumaEmbed} title={`${brand.name} events calendar on Luma`} loading="lazy" allowfullscreen></iframe>
     </div>
   </section>
 
-  <section class="sec">
+  {recordings.length > 0 && (
+    <section class="sec" id="recordings">
+      <div class="wrap">
+        <div class="head">
+          <div>
+            <h2>Recordings</h2>
+            <p class="lead">Missed a session? Watch our past talks and seminars.</p>
+          </div>
+          {site.links.youtube && <a class="link" href={site.links.youtube}>All recordings on YouTube ↗</a>}
+        </div>
+        <div class="videos">
+          {recordings.map((v) => <Video video={v} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="sec" id="past">
     <div class="wrap">
       <div class="head">
         <h2>Previous events</h2>

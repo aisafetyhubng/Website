@@ -1,4 +1,4 @@
-/* AI Safety Hub Nigeria, shared site styles.
+/* Shared site styles.
    Layout: one centred 1080px column; full-bleed bands only for the hero, featured programme band and footer.
    Flat colour blocks, hairline rules, no shadows, 3px radius. Two looks: teal (default) and cream (body[data-look="warm"]). */
 :root{
@@ -20,6 +20,8 @@ body[data-look="warm"]{
   --hero-a:#1D4A48; --hero-b:#5E9E93; --hero-c:#D9C38C; --hero-d:#F1E7CF;
 }
 *{box-sizing:border-box}
+html{scroll-padding-top:84px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 a{color:inherit}
 img{max-width:100%}
 .wrap{max-width:var(--max);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
@@ -57,7 +59,7 @@ header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgrou
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
 header.site .bar{display:flex;align-items:center;gap:24px;padding-block:12px}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none;margin-right:auto;color:var(--ink)}
-.logo svg{width:34px;height:auto;color:var(--teal)}
+.logo .logo-mark{width:36px;height:36px;display:block;flex:none}
 .logo span{font-family:"Sora",var(--sans);font-size:15px;line-height:1.08}
 nav.main{display:flex;align-items:center;gap:22px;font-size:14px}
 nav.main > a,.dd > button{text-decoration:none;color:var(--soft);padding:6px 0;border:0;border-bottom:2px solid transparent;background:none;font:inherit;cursor:pointer}
@@ -319,7 +321,6 @@ footer.site .wrap{padding-block:48px 24px}
 .fcols{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:28px}
 .fcols > *{min-width:0}
 footer.site .logo{color:#fff}
-footer.site .logo svg{color:#7FD3DA}
 footer.site h4{margin:0 0 10px;font:600 11px var(--sans);letter-spacing:.11em;text-transform:uppercase;color:#8FBFC2}
 footer.site ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 footer.site a{text-decoration:none}
@@ -337,12 +338,32 @@ footer.site .about{margin-top:14px;color:#A9CACC;max-width:30ch;font-size:13px}
 /* Luma calendar embed (events page) */
 .luma{width:100%;height:460px;border:1px solid var(--rule);border-radius:3px;background:#fff;display:block}
 
+/* YouTube recordings (events): thumbnail first, player loads on click */
+.videos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 16px}
+.video{display:flex;flex-direction:column;gap:7px;min-width:0}
+.video h3{font-size:16px;line-height:1.3}
+.video h3 a{text-decoration:none}
+.video h3 a:hover{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.yt,.yt-frame{display:block;width:100%;aspect-ratio:16 / 9;border:0;padding:0;background:#000;border-radius:3px}
+.yt{position:relative;overflow:hidden;cursor:pointer}
+.yt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease,opacity .2s ease;opacity:.92}
+.yt .play{position:absolute;left:50%;top:50%;width:58px;height:40px;margin:-20px 0 0 -29px;background:var(--teal-deep);border-radius:9px;transition:background .2s ease}
+.yt .play::after{content:"";position:absolute;left:23px;top:12px;border-style:solid;border-width:8px 0 8px 14px;border-color:transparent transparent transparent #fff}
+.yt:hover img,.yt:focus-visible img{transform:scale(1.03);opacity:1}
+.yt:hover .play,.yt:focus-visible .play{background:#C4302B}
+@media (max-width:860px){.videos{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.videos{grid-template-columns:1fr}}
+
 /* newsletter posts (home) */
 .posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .post{border-top:1px solid var(--ink);padding-top:12px;text-decoration:none;display:flex;flex-direction:column;gap:6px}
 .post h3{font-size:19px;line-height:1.25}
 .post p{font-size:13.5px;color:var(--soft)}
 .post:hover h3{color:var(--teal)}
+.post .go{margin-top:auto;padding-top:6px;font-size:13px;font-weight:500;color:var(--teal-deep);text-decoration:underline;text-decoration-color:var(--teal);text-underline-offset:4px}
+.posts.few{grid-template-columns:repeat(2,minmax(0,1fr))}
+.posts.few .post{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--teal);padding:18px 20px}
+@media (max-width:760px){.posts.few{grid-template-columns:1fr}}
 @media (max-width:760px){.posts{grid-template-columns:1fr}}
 .qimg{width:84px;height:112px;object-fit:cover;display:block;background:var(--aqua)}
 .thumb-img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--aqua)}

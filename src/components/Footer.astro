@@ -8,7 +8,7 @@ const year = new Date().getFullYear();
   <div class="wrap">
     <div class="fcols">
       <div>
-        <Logo />
+        <Logo white />
         <p class="about">Helping people in Nigeria find their way into AI safety research, governance and policy.</p>
       </div>
       <div>
@@ -42,6 +42,7 @@ const year = new Date().getFullYear();
           <li><a href={site.links.linkedin}>LinkedIn</a></li>
           <li><a href={site.links.instagram}>Instagram</a></li>
           <li><a href={site.links.substack}>Substack</a></li>
+          {site.links.youtube && <li><a href={site.links.youtube}>YouTube</a></li>}
         </ul>
       </div>
     </div>

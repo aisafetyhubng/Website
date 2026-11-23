@@ -47,6 +47,13 @@ export const siteSettings = defineType({
     defineField({name: 'location', title: 'Location line', type: 'string', group: 'contact', initialValue: 'Abuja and Lagos, Nigeria'}),
     defineField({name: 'apexLink', title: 'APEx programme page', type: 'url', group: 'contact'}),
     defineField({name: 'readingGroupLink', title: 'Reading group application link', type: 'url', group: 'contact'}),
+    defineField({
+      name: 'youtubeChannel',
+      title: 'YouTube channel',
+      type: 'url',
+      group: 'contact',
+      description: 'For example https://www.youtube.com/@yourchannel. Adds an "All recordings on YouTube" link and a YouTube link in the footer.',
+    }),
   ],
   preview: {prepare: () => ({title: 'Homepage and site settings'})},
 })

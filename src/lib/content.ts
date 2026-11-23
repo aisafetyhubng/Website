@@ -5,7 +5,14 @@
  * to the built-in copy in src/data/site.ts, so a build never breaks because of Sanity.
  */
 import * as local from '../data/site';
-import type { EventItem, Marker } from '../data/site';
+import type { EventItem, Marker, Recording } from '../data/site';
+
+/** Pulls the video ID out of any common YouTube link (watch, youtu.be, live, shorts, embed). */
+export function youtubeId(url?: string): string | undefined {
+  if (!url) return undefined;
+  const m = url.match(/(?:youtu\.be\/|[?&]v=|\/(?:live|shorts|embed)\/)([\w-]{11})/);
+  return m?.[1];
+}
 
 // The project ID is public (it appears in every request), so it can live in the code.
 // Set SANITY_PROJECT_ID=none to build from the built-in content only.
@@ -104,6 +111,7 @@ function build(raw: Raw | null) {
       ...local.site.links,
       apexProgram: s.apexLink || local.site.links.apexProgram,
       readingGroup: s.readingGroupLink || local.site.links.readingGroup,
+      youtube: s.youtubeChannel || local.site.links.youtube,
     },
   };
 
@@ -147,8 +155,16 @@ function build(raw: Raw | null) {
   let earlierEvents: EventItem[] = local.earlierEvents;
   let pastEventCards = local.pastEventCards;
   let featuredPastEvent: typeof local.featuredPastEvent | null = local.featuredPastEvent;
+  let recordings: Recording[] = local.recordings;
 
   if (raw?.events?.length) {
+    recordings = raw.events
+      .filter((e) => youtubeId(e.youtubeUrl))
+      .reverse() // newest first
+      .map((e) => {
+        const id = youtubeId(e.youtubeUrl)!;
+        return { id, title: e.cardTitle || e.title, date: [longDate(e.date), e.cardLabel].filter(Boolean).join(' · '), url: `https://www.youtube.com/watch?v=${id}` };
+      });
     const toItem = (e: any, prefix = ''): EventItem => ({
       ...eventDate(e.date, e.monthOnly),
       title: e.title,
@@ -170,7 +186,7 @@ function build(raw: Raw | null) {
         date: [longDate(e.date), e.cardLabel].filter(Boolean).join(' · '),
         image: imageUrl(e.image, 800, 450) ?? '',
         alt: e.image?.alt || e.title,
-        href: e.link || site.links.linkedinPosts,
+        href: e.link || (youtubeId(e.youtubeUrl) ? `https://www.youtube.com/watch?v=${youtubeId(e.youtubeUrl)}` : site.links.linkedinPosts),
       }));
     earlierEvents = past.filter((e) => !e.image?.asset).map((e) => ({ ...toItem(e), details: `${e.details ?? ''}${e.monthOnly ? '' : ` · ${e.date.slice(0, 4)}`}` }));
     const f = pastAll.find((e) => e.featured?.enabled);
@@ -220,6 +236,7 @@ function build(raw: Raw | null) {
     earlierEvents,
     pastEventCards,
     featuredPastEvent,
+    recordings,
     team,
     partners,
     quotes,

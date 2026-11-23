@@ -1,0 +1,17 @@
+---
+/**
+ * A YouTube recording that loads only when someone presses play: a thumbnail first, then the
+ * privacy-enhanced (youtube-nocookie) player. Keeps the Events page fast and cookie-free.
+ */
+import type { Recording } from '../data/site';
+interface Props { video: Recording }
+const { video } = Astro.props;
+---
+<article class="video">
+  <button class="yt" type="button" data-yt={video.id} data-title={video.title} aria-label={`Play: ${video.title}`}>
+    <img src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" />
+    <span class="play" aria-hidden="true"></span>
+  </button>
+  <h3><a href={video.url}>{video.title}</a></h3>
+  <span class="label">{video.date}</span>
+</article>

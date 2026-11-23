@@ -14,7 +14,7 @@ interface Props {
   showNewsletter?: boolean;
 }
 const { title, description = site.description, page, showAnnouncement = false, showNewsletter = true } = Astro.props;
-// The homepage title leads with the full name so Google matches "AI Safety Hub Nigeria" to this site.
+// The homepage title leads with the full name so Google matches the organisation's name to this site.
 const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · AI safety fellowships and community in Nigeria`;
 // Pages are built as about.html etc.; the public address drops ".html", and the homepage is just "/".
 const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/') || '/';
@@ -30,7 +30,7 @@ const orgSchema = {
   alternateName: site.alternateNames,
   disambiguatingDescription: site.disambiguation,
   url: siteUrl,
-  logo: new URL('/favicon.svg', Astro.site).toString(),
+  logo: { '@type': 'ImageObject', url: new URL('/logo.png', Astro.site).toString(), width: 512, height: 512 },
   image: new URL('/og-image.png', Astro.site).toString(),
   email: site.email,
   description: site.description,
@@ -48,9 +48,10 @@ const orgSchema = {
     site.links.substack,
     site.links.github,
     site.links.luma,
+    site.links.youtube,
     site.links.apexProgram,
     site.links.apexCurriculum,
-  ],
+  ].filter(Boolean),
 };
 const websiteSchema = {
   '@context': 'https://schema.org',
@@ -69,7 +70,12 @@ const websiteSchema = {
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Icons made from the logo by tools/make-icons.ps1. Google shows the 48px+ ones in search results. -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#063A41" />
     <meta name="build-time" content={new Date().toISOString()} />
 

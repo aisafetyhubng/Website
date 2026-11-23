@@ -119,6 +119,20 @@ document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
   });
 });
 
+/* YouTube recordings (events page): swap the thumbnail for the player on click. */
+document.querySelectorAll<HTMLButtonElement>('button.yt').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const frame = document.createElement('iframe');
+    frame.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&rel=0`;
+    frame.title = btn.dataset.title || 'Video';
+    frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    frame.allowFullscreen = true;
+    frame.className = 'yt-frame';
+    btn.replaceWith(frame);
+    frame.focus();
+  });
+});
+
 /* Timeline (about page): the card sits above the selected date. */
 const tl = document.querySelector<HTMLElement>('[data-timeline]');
 if (tl) {

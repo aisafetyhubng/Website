@@ -23,6 +23,16 @@ export const event = defineType({
     defineField({name: 'details', title: 'Details line', type: 'string', description: 'For example "Online · 90 minutes · free".'}),
     defineField({name: 'link', title: 'Registration or recap link', type: 'url'}),
     defineField({
+      name: 'youtubeUrl',
+      title: 'Recording on YouTube',
+      type: 'url',
+      description: 'Paste the YouTube link of the recording (any form: youtube.com/watch?v=…, youtu.be/…, /live/…). It then plays on the Events page under "Recordings".',
+      validation: (r) =>
+        r.custom((v?: string) =>
+          !v || /(?:youtu\.be\/|[?&]v=|\/(?:live|shorts|embed)\/)[\w-]{11}/.test(v) ? true : 'This does not look like a YouTube video link.',
+        ),
+    }),
+    defineField({
       name: 'image',
       title: 'Flyer or photo',
       type: 'image',

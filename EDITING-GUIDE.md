@@ -1,4 +1,4 @@
-# Editing the AI Safety Hub Nigeria website
+# Editing the website
 
 Everything on aisafetyhubng.com that changes often is edited in one place, the **Studio**:
 
@@ -50,6 +50,16 @@ To make it look good there, open it and add:
 - Tick **Show on the homepage after it has passed** if it should appear on the homepage too.
 
 Events without a picture are listed under "Earlier".
+
+### Add the recording of a talk (YouTube)
+1. Upload the video to YouTube (public or unlisted) and copy its link.
+2. In the Studio, open the event and paste the link into **Recording on YouTube** → Publish.
+
+It appears under **Recordings** on the Events page, newest first, and plays right on the page.
+The Recordings section only shows once at least one event has a recording.
+
+Once you have a YouTube channel, paste its address once into **Homepage and site settings → Contact and links → YouTube channel**.
+That adds an "All recordings on YouTube" link and a YouTube link in the footer.
 
 ### Add a team member
 Team → **+ Create** → name, role, one or two sentence bio, a square headshot, LinkedIn link, and an **Order** number (lower numbers show first) → Publish.
