@@ -36,7 +36,8 @@ export function imageUrl(img: SanityImage, w: number, h?: number): string | unde
 
 async function query<T>(groq: string): Promise<T | null> {
   if (!projectId) return null;
-  const url = `https://${projectId}.apicdn.sanity.io/v${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(groq)}`;
+  // api.sanity.io (not the apicdn cache) so a rebuild triggered by Publish always sees the newest content.
+  const url = `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(groq)}`;
   try {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Sanity responded ${res.status}`);
