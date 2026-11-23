@@ -37,7 +37,7 @@ export const site = {
 export const announcement = {
   enabled: true,
   title: 'Reading group',
-  text: 'Transformative AI and Society · six weeks, online · starts November 2026',
+  text: 'Transformative AI and Society · six weeks, online · starts January 2027',
   linkLabel: 'Apply to join →',
   href: site.links.readingGroup,
 };
@@ -84,9 +84,9 @@ export const programmes: {
     rowText: 'Transformative AI and Society: six weekly discussions, open to every background.',
     aboutText: 'Facilitated discussions of AI safety and governance literature, open to every background.',
     status: 'Applications open',
-    statusDetail: 'Starts November 2026',
-    menuStatus: 'Applications open, starts November',
-    aboutStatus: 'Starting November 2026',
+    statusDetail: 'Starts January 2027',
+    menuStatus: 'Applications open, starts January',
+    aboutStatus: 'Starting January 2027',
     href: site.links.readingGroup,
     linkLabel: 'Apply to join →',
   },
@@ -98,9 +98,9 @@ export const programmes: {
     rowText: 'Webinars, fireside chats and seminars with researchers and practitioners in the field.',
     aboutText: 'Webinars, fireside chats, seminars and community hangouts with people doing the work.',
     status: '',
-    statusDetail: 'Online and in Abuja · open to everyone',
-    menuStatus: 'Online and in Abuja',
-    aboutStatus: 'Online and in Abuja',
+    statusDetail: 'Online and in person · open to everyone',
+    menuStatus: 'Online and in person',
+    aboutStatus: 'Online and in person',
     href: '/events',
     linkLabel: 'See events →',
   },
@@ -184,8 +184,8 @@ export type EventItem = {
 
 export const upcomingEvents: EventItem[] = [
   {
-    day: 'Nov',
-    month: '2026',
+    day: 'Jan',
+    month: '2027',
     title: 'Transformative AI and Society Reading Group',
     details: 'Six weekly sessions of about 90 minutes · Online · No technical background needed',
     href: site.links.readingGroup,
@@ -301,7 +301,7 @@ export const timeline = [
   { short: 'Aug', label: 'APEx pilot', when: 'August 2026', title: 'APEx pilot cohort', text: "30 participants begin the first APEx Fellowship, with a seminar from BlueDot Impact's Mmachukwu Favour Osisioma." },
   { short: 'Sep', label: 'Graduation', when: 'September 2026', title: 'First fellows graduate', text: '13 fellows complete APEx. Grace Chege closes the programme with Beyond Global North: Building AI safety for Africa.' },
   { short: 'Oct', label: 'Facilitators', when: 'October 2026', title: 'Facilitators recruited', text: 'We recruit volunteer facilitators for our first reading group.' },
-  { short: 'Nov', label: 'Reading group', when: 'November 2026', title: 'Reading group launches', text: 'Transformative AI and Society: six weekly sessions on how AI could reshape work, power, institutions and governance. Applications are open.' },
+  { short: 'Jan', label: 'Reading group', when: 'January 2027', title: 'Reading group launches', text: 'Transformative AI and Society: six weekly sessions on how AI could reshape work, power, institutions and governance. Applications are open.' },
 ];
 
 export const contactChannels = [

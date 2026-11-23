@@ -7,13 +7,13 @@ import { getContent } from '../lib/content';
 const { site, upcomingEvents, pastEventCards, featuredPastEvent, earlierEvents, recordings } = await getContent();
 const lumaEmbed = `https://luma.com/embed/calendar/${site.lumaCalendarId}/events`;
 ---
-<Base title="Events" page="events" description={`Talks, seminars, recordings and community events from ${brand.name}, online and in Abuja.`}>
+<Base title="Events" page="events" description={`Talks, seminars, recordings and community events from ${brand.name}, online and in person.`}>
   <div class="page-head" style="border-bottom:0;padding-bottom:8px">
     <div class="wrap">
       <div class="top">
         <div>
           <h1>Events</h1>
-          <p class="lead">Talks, seminars and community events on AI safety, online and in Abuja. Everything is free and open to all.</p>
+          <p class="lead">Talks, seminars and community events on AI safety, online and in person. Everything is free and open to all.</p>
         </div>
         <div class="acts">
           <a class="btn btn-dark" href={site.links.luma}>Subscribe on Luma</a>
