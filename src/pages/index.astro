@@ -1,9 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import Quotes from '../components/Quotes.astro';
-import { site, programmes, stat, partners, upcomingEvents, recentEvents } from '../data/site';
+import { getContent } from '../lib/content';
 import { getLatestPosts } from '../lib/substack';
 
+const { site, programmes, stat, partners, upcomingEvents, recentEvents } = await getContent();
 const posts = await getLatestPosts(site.substackFeed, 3);
 const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 ---

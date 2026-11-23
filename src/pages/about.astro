@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site, programmes, about, team, timeline, partners } from '../data/site';
+import { getContent } from '../lib/content';
+const { site, programmes, about, team, timeline, partners } = await getContent();
 const last = timeline[timeline.length - 1];
 ---
 <Base title="About us" page="about" description="Who we are, how we started, our team and what AI Safety Hub Nigeria has done so far.">

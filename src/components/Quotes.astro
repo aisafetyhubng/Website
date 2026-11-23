@@ -1,5 +1,6 @@
 ---
-import { quotes } from '../data/site';
+import { getContent } from '../lib/content';
+const { quotes } = await getContent();
 ---
 <div class="quotes">
   {quotes.map((q) => (

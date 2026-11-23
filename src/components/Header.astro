@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
-import { programmes, site } from '../data/site';
+import { getContent } from '../lib/content';
+const { programmes, site } = await getContent();
 
 interface Props { page?: string }
 const { page } = Astro.props;

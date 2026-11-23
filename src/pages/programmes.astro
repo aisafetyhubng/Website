@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Quotes from '../components/Quotes.astro';
-import { site, programmes, apex } from '../data/site';
+import { getContent } from '../lib/content';
+const { site, programmes, apex } = await getContent();
 ---
 <Base title="Programmes" page="programmes" description="APEx Fellowship, reading groups, talks and Global AI Watch: free ways into AI safety for people in Nigeria.">
   <div class="page-head" style="border-bottom:0;padding-bottom:20px">

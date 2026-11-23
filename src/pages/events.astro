@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import EventRow from '../components/EventRow.astro';
-import { site, upcomingEvents, pastEventCards, featuredPastEvent, earlierEvents } from '../data/site';
+import { getContent } from '../lib/content';
+const { site, upcomingEvents, pastEventCards, featuredPastEvent, earlierEvents } = await getContent();
 const lumaEmbed = `https://luma.com/embed/calendar/${site.lumaCalendarId}/events`;
 ---
 <Base title="Events" page="events" description="Talks, seminars, reading groups and community events from AI Safety Hub Nigeria, online and in Abuja.">
@@ -19,7 +20,9 @@ const lumaEmbed = `https://luma.com/embed/calendar/${site.lumaCalendarId}/events
     <div class="wrap">
       <div class="head" style="margin-bottom:12px"><h2>Next up</h2></div>
       <div class="events">
-        {upcomingEvents.map((e) => <EventRow event={e} next />)}
+        {upcomingEvents.length > 0
+          ? upcomingEvents.map((e) => <EventRow event={e} next />)
+          : <p class="lead" style="padding:16px 0">New events are announced on <a href={site.links.luma}>Luma</a> and in our newsletter. Subscribe to hear first.</p>}
       </div>
     </div>
   </section>
@@ -52,33 +55,37 @@ const lumaEmbed = `https://luma.com/embed/calendar/${site.lumaCalendarId}/events
     </div>
   </section>
 
-  <section class="sec">
-    <div class="wrap feature">
-      <div>
-        <span class="label">{featuredPastEvent.kicker}</span>
-        <h3>{featuredPastEvent.title}</h3>
-        <dl class="facts">
-          {featuredPastEvent.facts.map((f) => (
-            <div><dt>{f.label}</dt><dd>{f.big && <b>{f.big}</b>}{f.text}</dd></div>
-          ))}
-        </dl>
-        <div class="links">
-          <a class="link" href={site.links.apexProgram}>About APEx →</a>
-          <a class="link" href={site.links.apexCurriculum}>Open curriculum →</a>
+  {featuredPastEvent && (
+    <section class="sec">
+      <div class="wrap feature">
+        <div>
+          <span class="label">{featuredPastEvent.kicker}</span>
+          <h3>{featuredPastEvent.title}</h3>
+          <dl class="facts">
+            {featuredPastEvent.facts.map((f) => (
+              <div><dt>{f.label}</dt><dd>{f.big && <b>{f.big}</b>}{f.text}</dd></div>
+            ))}
+          </dl>
+          <div class="links">
+            <a class="link" href={site.links.apexProgram}>About APEx →</a>
+            <a class="link" href={site.links.apexCurriculum}>Open curriculum →</a>
+          </div>
+        </div>
+        <div class="photos">
+          {featuredPastEvent.photos.map((p) => <img class="photo" src={p.src} alt={p.alt} width="720" height="553" loading="lazy" />)}
         </div>
       </div>
-      <div class="photos">
-        {featuredPastEvent.photos.map((p) => <img class="photo" src={p.src} alt={p.alt} width="720" height="553" loading="lazy" />)}
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
-  <section class="sec">
-    <div class="wrap">
-      <div class="head" style="margin-bottom:12px"><h2>Earlier</h2></div>
-      <div class="events">
-        {earlierEvents.map((e) => <EventRow event={e} />)}
+  {earlierEvents.length > 0 && (
+    <section class="sec">
+      <div class="wrap">
+        <div class="head" style="margin-bottom:12px"><h2>Earlier</h2></div>
+        <div class="events">
+          {earlierEvents.map((e) => <EventRow event={e} />)}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 </Base>
