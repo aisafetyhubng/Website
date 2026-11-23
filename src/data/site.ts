@@ -277,7 +277,7 @@ export const about = {
   vision:
     'Nigeria becomes a recognised hub for AI safety expertise in Africa, with Nigerian researchers and practitioners contributing to global AI safety research, policy and practice.',
   story: [
-    `${brand.name} was started by six people from Nigeria's effective altruism community who kept running into the same problem. Nigerians were interested in AI safety, but there was almost no way in: few local programmes, few mentors, and little sense of where someone from Nigeria could contribute.`,
+    `${brand.name} was started by five people from Nigeria's effective altruism community who kept running into the same problem. Nigerians were interested in AI safety, but there was almost no way in: few local programmes, few mentors, and little sense of where someone from Nigeria could contribute.`,
     "We came from different corners of that community, from university EA groups and EA Nigeria to the ILINA Program in Kenya and technology governance work at home. We decided to build the on-ramp we wished we'd had. Our first public webinar ran in December 2025. Since then we've run a fellowship, seminars, a community hangout in Abuja and a reading group.",
     'Our mission is to advance AI safety research, education and governance in Nigeria and across Africa. We work across Abuja and Lagos, and most of our programmes run online so anyone in Nigeria can join.',
   ],
@@ -291,7 +291,6 @@ export const team = [
   { name: 'Folajomi Amao', role: 'Co-founder', bio: 'AI safety and governance researcher working across programmes and operations.', photo: '/img/team/folajomi-amao.jpg', linkedin: 'https://www.linkedin.com/in/meetfolaamao/' },
   { name: 'Adebayo Mubarak', role: 'Co-founder', bio: 'Writer, researcher and community builder in AI governance and safety, law and policy, with experience at BlueDot Impact and Effective Altruism Nigeria.', photo: '/img/team/adebayo-mubarak.jpg', linkedin: 'https://www.linkedin.com/in/adebayo-mubarak-48879a1aa/' },
   { name: 'Joseph Adeboye', role: 'Co-founder', bio: 'AI safety researcher and programme associate in policy and governance at the Tech Governance Project.', photo: '/img/team/joseph-adeboye.jpg', linkedin: 'https://www.linkedin.com/in/josephadeboye/' },
-  { name: 'John Oluwafemi Jegede', role: 'Co-founder', bio: 'Works on AI governance, product and climate, with experience at The Midas Project.', photo: '/img/team/john-jegede.jpg', linkedin: 'https://www.linkedin.com/in/john-oluwafemi-jegede-2243a1188/' },
 ];
 
 export const timeline = [

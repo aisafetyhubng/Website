@@ -4,6 +4,8 @@ import { brand } from '../../brand.config.mjs';
 import { getContent } from '../lib/content';
 const { site, programmes, about, team, timeline, partners } = await getContent();
 const last = timeline[timeline.length - 1];
+// Counts the team from the Studio, so adding or removing someone keeps this line right.
+const countWord = (n: number) => ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'][n] ?? String(n);
 ---
 <Base title="About us" page="about" description={`Who we are, how we started, our team and what ${brand.name} has done so far.`}>
   <div class="page-head">
@@ -68,7 +70,7 @@ const last = timeline[timeline.length - 1];
     <div class="wrap team">
       <div>
         <h2>Our team</h2>
-        <p class="lead" style="font-size:14px">Our six co-founders.</p>
+        <p class="lead" style="font-size:14px">Our {countWord(team.length)} co-founders.</p>
         <a class="btn btn-dark" href="/contact" style="margin-top:14px">Join us</a>
       </div>
       <div class="people">
